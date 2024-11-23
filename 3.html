@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫读 - 应用详情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+        }
+
+        .back-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .app-info {
+            padding: 20px;
+            background: #fff;
+            display: flex;
+            gap: 15px;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+        }
+
+        .app-details {
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .developer {
+            color: #1a73e8;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .version {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: #fff;
+            margin-top: 1px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background: #fff;
+        }
+
+        .version-btn, .download-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .version-btn {
+            background: #fff;
+            color: #333;
+        }
+
+        .download-btn {
+            background: #1a73e8;
+            color: #fff;
+            border: none;
+        }
+
+        .section {
+            margin-top: 10px;
+            background: #fff;
+            padding: 15px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .screenshots {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .screenshot {
+            width: 200px;
+            height: 400px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .about {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            padding: 5px 15px;
+            border-radius: 15px;
+            background: #f5f5f5;
+            font-size: 14px;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+                .comments-section {
+            margin-top: 10px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .comment-form {
+            margin-bottom: 15px;
+        }
+
+        .comment-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .comment-button {
+            background: #1a73e8;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .comment-list {
+            margin-top: 15px;
+        }
+
+        .comment-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comment-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .comment-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .star {
+            cursor: pointer;
+            font-size: 20px;
+            color: #ddd;
+        }
+
+        .star.active {
+            color: #ffd700;
+        }
+
+        .save-status {
+            font-size: 12px;
+            color: #666;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="back-button">←</span>
+        <div class="header-right">
+        </div>
+    </div>
+
+    <div class="app-info">
+        <img src="/api/placeholder/80/80" alt="漫读" class="app-icon">
+        <div class="app-details">
+            <div class="app-name">漫读</div>
+            <div class="developer">茂名市奇谈网络科技有限公司</div>
+            <div class="version">1.0.5・独立开发</div>
+        </div>
+    </div>
+
+<div class="app-list">
+        <div class="app-item">
+            <img src="/api/placeholder/50/50" alt="漫读" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">漫读</div>
+                <div class="app-category">图书阅读・文学</div>
+                <div class="rating">10.0 ★ <span class="app-size">13.19MB</span></div>
+        <div class="stat-item">
+            <div class="stat-value">10.0 ★</div>
+            <div class="stat-label">1条评价</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">13.19MB</div>
+            <div class="stat-label">大小</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">ALL</div>
+            <div class="stat-label">全兼容</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">官方版</div>
+            <div class="stat-label">渠道</div>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <button class="version-btn">版本</button>
+        <button class="download-btn">下载</button>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">新变化</div>
+            <span>→</span>
+        </div>
+        <div>更新时间：13天前</div>
+        <div>修复网络链接失败</div>
+    </div>
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">应用截图</div>
+        </div>
+        <div class="screenshots">
+            <img src="/api/placeholder/200/400" alt="截图1" class="screenshot">
+            <img src="/api/placeholder/200/400" alt="截图2" class="screenshot">
+            <img src="/api/placeholder/200/400" alt="截图3" class="screenshot">
+            <img src="/api/placeholder/200/400" alt="截图4" class="screenshot">
+        </div>
+    </div>
+
+<div class="app-list">
+    <button onclick="toggleComments(this)" class="comment-button">查看评论</button>
+                <div class="comments-section" style="display: none;">
+                    <div class="comment-form">
+                        <div class="star-rating" data-rating="0">
+                            <span class="star" data-value="1">★</span>
+                            <span class="star" data-value="2">★</span>
+                            <span class="star" data-value="3">★</span>
+                            <span class="star" data-value="4">★</span>
+                            <span class="star" data-value="5">★</span>
+                        </div>
+                        <textarea class="comment-input" placeholder="写下你的评论..."></textarea>
+                        <button onclick="submitComment(this)" class="comment-button">发表评论</button>
+                        <span class="save-status"></span>
+                    </div>
+                    <div class="comment-list"></div>
+                </div>
+            </div>
+        </div>
+    
+
+    <div class="section">
+        <div class="section-header">
+            <div class="section-title">关于此应用</div>
+            <span>→</span>
+        </div>
+        <div class="about">
+            「漫读」一款纯净的短文阅读应用，漫不经心发现好文、好句、好音乐...
+        </div>
+        <div class="tags">
+            <span class="tag">图书阅读</span>
+            <span class="tag">文学</span>
+        </div>
+    </div>
+            
+
+    <div class="bottom-nav">
+        <div>三</div>
+        <div>○</div>
+        <div>＜</div>
+    </div>
+    
+    <script>
+        // 初始化评论数据
+        let comments = JSON.parse(localStorage.getItem('appComments')) || {};
+
+        // 切换评论区显示/隐藏
+        function toggleComments(button) {
+            const commentsSection = button.nextElementSibling;
+            commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+            
+            if (commentsSection.style.display === 'block') {
+                loadComments(commentsSection);
+            }
+        }
+
+        // 加载评论
+        function loadComments(section) {
+            const appName = section.closest('.app-item').querySelector('.app-name').textContent;
+            const commentList = section.querySelector('.comment-list');
+            commentList.innerHTML = '';
+            
+            const appComments = comments[appName] || [];
+            appComments.forEach(comment => {
+                const commentElement = createCommentElement(comment);
+                commentList.appendChild(commentElement);
+            });
+        }
+
+        // 创建评论元素
+        function createCommentElement(comment) {
+            const div = document.createElement('div');
+            div.className = 'comment-item';
+            div.innerHTML = `
+                <div class="comment-meta">
+                    评分: ${'★'.repeat(comment.rating)}${'☆'.repeat(5-comment.rating)} | 
+                    ${new Date(comment.date).toLocaleString()}
+                </div>
+                <div class="comment-text">${comment.text}</div>
+            `;
+            return div;
+        }
+
+        // 提交评论
+        function submitComment(button) {
+            const section = button.closest('.comments-section');
+            const appName = section.closest('.app-item').querySelector('.app-name').textContent;
+            const commentInput = section.querySelector('.comment-input');
+            const ratingContainer = section.querySelector('.star-rating');
+            const rating = parseInt(ratingContainer.dataset.rating);
+            
+            if (!rating || !commentInput.value.trim()) {
+                alert('请填写评分和评论内容');
+                return;
+            }
+
+            const comment = {
+                text: commentInput.value.trim(),
+                rating: rating,
+                date: new Date().toISOString()
+            };
+
+            // 保存评论
+            if (!comments[appName]) {
+                comments[appName] = [];
+            }
+            comments[appName].unshift(comment);
+            
+            // 自动保存到 localStorage
+            localStorage.setItem('appComments', JSON.stringify(comments));
+            
+            // 更新显示
+            loadComments(section);
+            
+            // 清空输入
+            commentInput.value = '';
+            resetStars(ratingContainer);
+            
+            // 显示保存状态
+            const saveStatus = section.querySelector('.save-status');
+            saveStatus.textContent = '已保存';
+            setTimeout(() => {
+                saveStatus.textContent = '';
+            }, 2000);
+        }
+
+        // 初始化星级评分
+        document.querySelectorAll('.star-rating').forEach(container => {
+            container.querySelectorAll('.star').forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.dataset.value);
+                    container.dataset.rating = value;
+                    updateStars(container, value);
+                });
+                
+                star.addEventListener('mouseover', () => {
+                    const value = parseInt(star.dataset.value);
+                    updateStars(container, value);
+                });
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                const rating = parseInt(container.dataset.rating);
+                updateStars(container, rating);
+            });
+        });
+
+        // 更新星星显示
+        function updateStars(container, value) {
+            container.querySelectorAll('.star').forEach(star => {
+                const starValue = parseInt(star.dataset.value);
+                star.classList.toggle('active', starValue <= value);
+            });
+        }
+
+        // 重置星级评分
+        function resetStars(container) {
+            container.dataset.rating = '0';
+            container.querySelectorAll('.star').forEach(star => {
+                star.classList.remove('active');
+            });
+        }
+    </script>
+    
+</body>
+</html>
