@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>应用和游戏商店</title>
+    <title>皮卡商店</title>
     <style>
         * {
             margin: 0;
@@ -14,7 +14,6 @@
 
         body {
             background-color: #f5f5f5;
-            padding-bottom: 60px;
         }
 
         .header {
@@ -25,233 +24,205 @@
             z-index: 100;
         }
 
-        /* ... 前面的样式保持不变 ... */
-
-        .comments-section {
-            margin-top: 10px;
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .comment-form {
-            margin-bottom: 15px;
-        }
-
-        .comment-input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            padding: 8px 15px;
+            border-radius: 20px;
             margin-bottom: 10px;
-            resize: vertical;
-            min-height: 60px;
         }
 
-        .comment-button {
-            background: #1a73e8;
-            color: white;
+        .search-bar input {
             border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
+            background: transparent;
+            width: 100%;
+            padding: 0 10px;
+            font-size: 14px;
         }
 
-        .comment-list {
-            margin-top: 15px;
-        }
-
-        .comment-item {
-            padding: 10px;
+        .nav-tabs {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
             border-bottom: 1px solid #eee;
         }
 
-        .comment-meta {
+        .nav-item {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-item.active {
+            color: #1a73e8;
+        }
+
+        .app-list {
+            padding: 15px;
+        }
+
+        .app-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            margin-right: 15px;
+        }
+
+        .app-info {
+            flex: 1;
+        }
+
+        .app-name {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .app-category {
             font-size: 12px;
             color: #666;
-            margin-bottom: 5px;
         }
 
-        .comment-text {
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .star-rating {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-
-        .star {
-            cursor: pointer;
-            font-size: 20px;
-            color: #ddd;
-        }
-
-        .star.active {
-            color: #ffd700;
-        }
-
-        .save-status {
+        .app-size {
             font-size: 12px;
             color: #666;
             margin-left: 10px;
         }
+
+        .rating {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .bottom-nav-item {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #fff;
+        }
+
+        .filter-button {
+            padding: 5px 15px;
+            border-radius: 15px;
+            border: 1px solid #ddd;
+            background: #fff;
+            font-size: 14px;
+        }
+
+        .filter-button.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            border-color: #1a73e8;
+        }
     </style>
 </head>
 <body>
-    <!-- 前面的HTML结构保持不变 -->
+    <div class="header">
+        <div class="search-bar">
+            
+        <div class="nav-tabs">
+            <a href="#" class="nav-item active">为您推荐</a>
+            <a href="#" class="nav-item">最近更新</a>
+        </div>
+    </div>
+
+    <div class="filter-bar">
+        <button class="filter-button active">今日热门</button>
+    </div>
 
     <div class="app-list">
         <div class="app-item">
-            <img src="/api/placeholder/50/50" alt="漫读" class="app-icon">
+            <img src="https://files.catbox.moe/p8u1al.webp" alt="绿茶VPN" class="app-icon">
             <div class="app-info">
-                <div class="app-name">漫读</div>
-                <div class="app-category">图书阅读・文学</div>
-                <div class="rating">10.0 ★ <span class="app-size">13.19MB</span></div>
-                <button onclick="toggleComments(this)" class="comment-button">查看评论</button>
-                <div class="comments-section" style="display: none;">
-                    <div class="comment-form">
-                        <div class="star-rating" data-rating="0">
-                            <span class="star" data-value="1">★</span>
-                            <span class="star" data-value="2">★</span>
-                            <span class="star" data-value="3">★</span>
-                            <span class="star" data-value="4">★</span>
-                            <span class="star" data-value="5">★</span>
-                        </div>
-                        <textarea class="comment-input" placeholder="写下你的评论..."></textarea>
-                        <button onclick="submitComment(this)" class="comment-button">发表评论</button>
-                        <span class="save-status"></span>
-                    </div>
-                    <div class="comment-list"></div>
-                </div>
+                <div class="app-name">
+                    <a href="https://abcd136.github.io/x/" style="color: black; text-decoration: none;">绿茶VPN</a>
+            </div>
+                <div class="app-category">实用工具・工具</div>
+                <div class="rating">9.8 ★ <span class="app-size">6.42MB</span></div>
             </div>
         </div>
         
-        <!-- 其他应用项目 -->
-    </div>
+        <div class="app-item">
+            <img src="https://files.catbox.moe/e42k1v.jpg" alt="魔方加速器" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">魔方加速器</div>
+                <div class="app-category">实用工具・工具</div>
+                <div class="rating">9.2 ★ <span class="app-size">27.01MB</span></div>
+            </div>
+        </div>
 
-    <script>
-        // 初始化评论数据
-        let comments = JSON.parse(localStorage.getItem('appComments')) || {};
+        <div class="app-item">
+            <img src="https://via.placeholder.com/50" alt="旋风加速器" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">旋风加速器</div>
+                <div class="app-category">实用工具・小工具</div>
+                <div class="rating">6.8 ★ <span class="app-size">17.22MB</span></div>
+            </div>
+        </div>
+    
+    
+    <div class="app-item">
+            <img src="https://via.placeholder.com/50" alt="起飞VPN" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">起飞VPN</div>
+                <div class="app-category">实用工具・小工具</div>
+                <div class="rating">7.9 ★ <span class="app-size">76.60MB</span></div>
+            </div>
+        </div>
+    
+    <div class="app-item">
+            <img src="https://via.placeholder.com/50" alt="迷雾通" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">迷雾通</div>
+                <div class="app-category">实用工具・小工具</div>
+                <div class="rating">5.9 ★ <span class="app-size">76.60MB</span></div>
+            </div>
+        </div>
+    
+    <div class="app-item">
+            <img src="https://via.placeholder.com/50" alt="ProtonVPN" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">ProtonVPN</div>
+                <div class="app-category">实用工具・小工具</div>
+                <div class="rating">6.2 ★ <span class="app-size">25.72MB</span></div>
+            </div>
+        </div>
 
-        // 切换评论区显示/隐藏
-        function toggleComments(button) {
-            const commentsSection = button.nextElementSibling;
-            commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
-            
-            if (commentsSection.style.display === 'block') {
-                loadComments(commentsSection);
-            }
-        }
-
-        // 加载评论
-        function loadComments(section) {
-            const appName = section.closest('.app-item').querySelector('.app-name').textContent;
-            const commentList = section.querySelector('.comment-list');
-            commentList.innerHTML = '';
-            
-            const appComments = comments[appName] || [];
-            appComments.forEach(comment => {
-                const commentElement = createCommentElement(comment);
-                commentList.appendChild(commentElement);
-            });
-        }
-
-        // 创建评论元素
-        function createCommentElement(comment) {
-            const div = document.createElement('div');
-            div.className = 'comment-item';
-            div.innerHTML = `
-                <div class="comment-meta">
-                    评分: ${'★'.repeat(comment.rating)}${'☆'.repeat(5-comment.rating)} | 
-                    ${new Date(comment.date).toLocaleString()}
+    <div class="bottom-nav">
+        <div class="bottom-nav-item">
+            <div>📱</div>
+            <div>
+                <a href="https://abcd136.github.io/z/" style="color: black; text-decoration: none;">应用</a>
                 </div>
-                <div class="comment-text">${comment.text}</div>
-            `;
-            return div;
-        }
-
-        // 提交评论
-        function submitComment(button) {
-            const section = button.closest('.comments-section');
-            const appName = section.closest('.app-item').querySelector('.app-name').textContent;
-            const commentInput = section.querySelector('.comment-input');
-            const ratingContainer = section.querySelector('.star-rating');
-            const rating = parseInt(ratingContainer.dataset.rating);
-            
-            if (!rating || !commentInput.value.trim()) {
-                alert('请填写评分和评论内容');
-                return;
-            }
-
-            const comment = {
-                text: commentInput.value.trim(),
-                rating: rating,
-                date: new Date().toISOString()
-            };
-
-            // 保存评论
-            if (!comments[appName]) {
-                comments[appName] = [];
-            }
-            comments[appName].unshift(comment);
-            
-            // 自动保存到 localStorage
-            localStorage.setItem('appComments', JSON.stringify(comments));
-            
-            // 更新显示
-            loadComments(section);
-            
-            // 清空输入
-            commentInput.value = '';
-            resetStars(ratingContainer);
-            
-            // 显示保存状态
-            const saveStatus = section.querySelector('.save-status');
-            saveStatus.textContent = '已保存';
-            setTimeout(() => {
-                saveStatus.textContent = '';
-            }, 2000);
-        }
-
-        // 初始化星级评分
-        document.querySelectorAll('.star-rating').forEach(container => {
-            container.querySelectorAll('.star').forEach(star => {
-                star.addEventListener('click', () => {
-                    const value = parseInt(star.dataset.value);
-                    container.dataset.rating = value;
-                    updateStars(container, value);
-                });
-                
-                star.addEventListener('mouseover', () => {
-                    const value = parseInt(star.dataset.value);
-                    updateStars(container, value);
-                });
-            });
-            
-            container.addEventListener('mouseleave', () => {
-                const rating = parseInt(container.dataset.rating);
-                updateStars(container, rating);
-            });
-        });
-
-        // 更新星星显示
-        function updateStars(container, value) {
-            container.querySelectorAll('.star').forEach(star => {
-                const starValue = parseInt(star.dataset.value);
-                star.classList.toggle('active', starValue <= value);
-            });
-        }
-
-        // 重置星级评分
-        function resetStars(container) {
-            container.dataset.rating = '0';
-            container.querySelectorAll('.star').forEach(star => {
-                star.classList.remove('active');
-            });
-        }
-    </script>
+        </div>
+        <div class="bottom-nav-item">
+            <div>🎮</div>
+            <div>游戏</div>
+        </div>
+    </div>
 </body>
 </html>
