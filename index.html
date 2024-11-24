@@ -138,6 +138,16 @@
             color: #1a73e8;
             border-color: #1a73e8;
         }
+
+        .bottom-nav.hidden {
+            transform: translateY(50%);
+        }
+
+        .bottom-nav-item {
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -267,19 +277,20 @@
         </div>
 
     <div class="bottom-nav">
-        <div class="bottom-nav-item">
+        
+        <div class="bottom-nav-item" onclick="toggleNav()">
             <div>📱</div>
             <div>
                 <a href="https://abcd136.github.io/z/" style="color: black; text-decoration: none;">应用</a>
                 </div>
         </div>
-        <div class="bottom-nav-item">
+        <div class="bottom-nav-item" onclick="toggleNav()">
             <div>🎮</div>
             <div>
                 <a href="https://abcd136.github.io/z1/" style="color: black; text-decoration: none;">游戏</a>
             </div>
         </div>
-        <div class="bottom-nav-item">
+        <div class="bottom-nav-item" onclick="toggleNav()">
             <div>🛠️</div>
             <div>
                 <a href="https://abcd136.github.io/z2/" style="color: black; text-decoration: none;">工具</a>
@@ -287,5 +298,11 @@
         </div>
     </div>
 
+    <script>
+        function toggleNav() {
+            var bottomNav = document.querySelector('.bottom-nav');
+            bottomNav.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>
