@@ -138,22 +138,10 @@
             color: #1a73e8;
             border-color: #1a73e8;
         }
-        .night-mode-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            border: none;
-            background-color: #1a73e8;
-            color: white;
-            border-radius: 50%;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
     <div class="header">
-        <button class="night-mode-toggle">夜间模式</button>
         <div class="search-bar">
             
         <div class="nav-tabs">
@@ -249,6 +237,17 @@
             </div>
         </div>
 
+        <div class="app-item">
+            <img src="https://files.catbox.moe/88xttt.jpg" alt="小米" class="app-icon">
+            <div class="app-info">
+                <div class="app-name">
+                    <a href="https://abcd136.github.io/x8/" style="color: black; text-decoration: none;">小米加速器</a>
+                </div>
+                <div class="app-category">实用工具・小工具</div>
+                <div class="rating">6.2 ★ <span class="app-size">25.72MB</span></div>
+            </div>
+        </div>
+
     <div class="bottom-nav">
         <div class="bottom-nav-item">
             <div>📱</div>
@@ -264,10 +263,5 @@
         </div>
     </div>
 
-        <script>
-        document.querySelector('.night-mode-toggle').addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
-        });
-    </script>
 </body>
 </html>
