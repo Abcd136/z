@@ -138,19 +138,31 @@
             color: #1a73e8;
             border-color: #1a73e8;
         }
+        .night-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            border: none;
+            background-color: #1a73e8;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="header">
+                <button class="night-mode-toggle">夜间模式</button>
         <div class="search-bar">
             
         <div class="nav-tabs">
-            <a href="https://abcd136.github.io/z/" class="nav-item active">为您推荐</a>
-            <a href="https://abcd136.github.io/f/" class="nav-item">皮卡导航</a>
-            <a href="https://abcd136.github.io/b/" class="nav-item">皮卡网站</a>
-            <a href="https://abcd136.github.io/abcd/" class="nav-item">旧网站</a>
+            <a href="https://abcd136.github.io/z/" class="nav-item active">推荐</a>
+            <a href="https://abcd136.github.io/f/" class="nav-item">导航</a>
+            <a href="https://abcd136.github.io/b/" class="nav-item">皮站</a>
+            <a href="https://abcd136.github.io/abcd/" class="nav-item">旧站</a>
             <a href="https://abcd136.github.io/yes/" class="nav-item">菈妮</a>
-            <a href="https://abcd136.github.io/rop/" class="nav-item">天选姬</a>
+            <a href="https://abcd136.github.io/rop/" class="nav-item">天姬</a>
         </div>
     </div>
 
@@ -251,5 +263,11 @@
             </div>
         </div>
     </div>
+
+        <script>
+        document.querySelector('.night-mode-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+    </script>
 </body>
 </html>
